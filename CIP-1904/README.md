@@ -1,6 +1,6 @@
 ---
-CIP: ?
-Title: Verifiable Supply Chain Records
+CIP: 1904
+Title: Verifiable supply chain records
 Category: Metadata
 Status: Proposed
 Authors:
