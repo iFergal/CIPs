@@ -57,7 +57,7 @@
   },
   {
     "transaction_metadatum_label": 1904,
-    "description": "Proof of origin and quality related verification data in supply chain"
+    "description": "CIP-1904 - Verifiable supply chain records"
   },
   {
     "transaction_metadatum_label": 1967,
