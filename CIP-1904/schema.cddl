@@ -1,0 +1,74 @@
+transaction_metadata = {
+  "1904": scm_record / conformity_cert_issue_record / conformity_cert_revoke_record
+}
+
+
+; Common
+md_str = tstr .size (1..64)
+md_bs = bytes .size (1..64)
+md_bs_arr = [2* md_bs]
+
+; If a key rotation occurred, an array of public keys, headers and signatures are supplied and are all suffixed with "_kt"
+; The length of each "_kt" array must be the same, where the ith index of each array refers to the ith key and its corresponding JSON Web Signatures
+
+public_key = md_str / md_bs ; URL to public key (application/octet-stream) or public key byte stream
+public_key_kt = [2* public_key]
+
+public_key_version = uint
+public_key_version_kt = [2* public_key_version]
+
+header = md_bs / md_bs_arr ; JSON Web Signature header - RFC 7515
+header_kt = [2* header]
+
+signature = md_bs / md_bs_arr ; detached JSON Web Signature - RFC 7515
+signature_arr = [1* signature]
+signature_arr_kt = [2* signature_arr]
+
+; CID hereafter refers to the Content Identifier of off-chain data (Multiformats)
+
+
+; SCM
+scm_record =
+  { t: "scm"
+  , ? st: md_str
+  , v: md_str
+  , cid: md_str
+  , d: verification_data
+  }
+
+verification_data = { * producer_id => producer_verification_data }
+
+producer_id = md_str
+
+producer_verification_data =
+  { pk: public_key / public_key_kt
+  , ? pkv: public_key_version / public_key_version_kt
+  , h: header / header_kt
+  , s: signature_arr / signature_arr_kt
+  }
+
+
+; Certificate of Conformity
+conformity_cert_issue_record =
+  { t: "conformityCert"
+  , ? st: md_str
+  , v: md_str
+  , cid: md_str
+  , pk: public_key / public_key_kt
+  , ? pkv: public_key_version / public_key_version_kt
+  , h: header / header_kt
+  , s: signature_arr / signature_arr_kt
+  }
+
+
+; Certificate of Conformity revoke
+conformity_cert_revoke_record = 
+  { t: "conformityCertRevoke"
+  , ? st: md_str
+  , v: md_str
+  , pk: public_key / public_key_kt
+  , ? pkv: public_key_version / public_key_version_kt
+  , h: header / header_kt
+  , s: signature_arr / signature_arr_kt
+  , cid: md_str
+  }

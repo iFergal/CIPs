@@ -1,0 +1,6 @@
+[
+  {
+    "st": "georgianWine",
+    "description": "The National Wine Agency of Georgia oversees the production and quality control of bottles of wine produced in the country. This subtype is used for proof-of-origin and quality control on individual bottles. Supply Chain Management data follows an extended version of the OIV Standard - https://www.oiv.int/standards/international-standard-for-the-labelling-of-wines - and Certificates of Conformity are signed directly by the National Wine Agency. For more information on transaction verification, please see https://cardano-foundation.github.io/cf-georgian-wine-resolver."
+  }
+]
