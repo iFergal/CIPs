@@ -240,8 +240,7 @@ The use of subtypes allows us to capture a broad variety of use-cases and not ma
 ## Path to Active
 
 ### Acceptance Criteria
-This has already been implemented by the Cardano Foundation for the Georgian wine use-case.
-Acceptance as a CIP should be determined if
+<todo>
 
 ### Implementation Plan
 The Cardano Foundation have developed a proof of origin application to integrate with the National Wine Agency of Georgia (`georgianWine` subtype).
